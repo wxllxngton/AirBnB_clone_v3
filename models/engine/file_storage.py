@@ -66,12 +66,8 @@ class FileStorage:
         Returns:
            obj - The object queried or None otherwise
         """
-        if cls and id:
-            takeObj = "{}.{}".format(cls, id)
-            everyObj = self.all(cls)
-            return everyObj.get(takeObj)
-        else:
-            return None
+        key = f"{cls.__name__}.{id}"
+        return self.__objects.get(key, None)
 
     def count(self, cls=None):
         """
