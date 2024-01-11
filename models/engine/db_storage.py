@@ -78,7 +78,7 @@ class DBStorage:
            obj - The object queried or None otherwise
         """
         try:
-            res = self.__session.query(cls).filter_by(id=id).one
+            res = self.__session.query(cls).filter_by(id=id).one()
             return res
         except Exception as e:
             return None
@@ -98,7 +98,7 @@ class DBStorage:
             if cls is not None:
                 count += self.__session.query(cls).count()
             else:
-                for cls in classes:
+                for cls in classes.values():
                     count += self.__session.query(cls).count()
             return count
         except Exception as e:
