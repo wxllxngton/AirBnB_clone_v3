@@ -98,7 +98,7 @@ class DBStorage:
             if cls is not None:
                 count += self.__session.query(cls).count()
             else:
-                for cls in classes:
+                for cls in classes.values():
                     count += self.__session.query(cls).count()
             return count
         except Exception as e:

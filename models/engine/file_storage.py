@@ -42,9 +42,10 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """Adds new object to storage dictionary."""
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        """sets in __objects the obj with key <obj class name>.id"""
+        if obj is not None:
+            key = obj.__class__.__name__ + "." + obj.id
+            self.__objects[key] = obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
@@ -65,8 +66,12 @@ class FileStorage:
         Returns:
            obj - The object queried or None otherwise
         """
-        key = f"{cls.__name__}.{id}"
-        return self.__objects.get(key, None)
+        if cls and id:
+            takeObj = "{}.{}".format(cls, id)
+            everyObj = self.all(cls)
+            return everyObj.get(takeObj)
+        else:
+            return None
 
     def count(self, cls=None):
         """
