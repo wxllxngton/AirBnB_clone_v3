@@ -67,7 +67,16 @@ class DBStorage:
         self.__session.commit()
 
     def get(self, cls, id):
-        """get an object by its class and id from the current database session"""
+        """
+        Get an object by its class and id from the current database session
+
+        Parameters:
+            cls(class) - The class to be queried.
+            id(int) - The id of the record to be returned.
+
+        Returns:
+           obj - The object queried or None otherwise
+        """
         try:
             res = self.__session.query(cls).filter_by(id=id).one
             return res
@@ -75,7 +84,15 @@ class DBStorage:
             return None
 
     def count(self, cls=None):
-        """counts the number of objects in storage"""
+        """
+        Counts the number of objects in storage
+
+        Paramters:
+            cls(class, default=None) - The class to be queried.
+
+        Returns:
+            int - Number of records found
+        """
         try:
             count = 0
             if cls is not None:

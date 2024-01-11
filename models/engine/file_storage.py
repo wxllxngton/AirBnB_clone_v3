@@ -56,12 +56,29 @@ class FileStorage:
             json.dump(json_objects, f)
 
     def get(self, cls, id):
-        """get an object by its class and id from the current storage"""
+        """
+        Get an object by its class and id from the current database session
+
+        Parameters:
+            cls(class) - The class to be queried.
+            id(int) - The id of the record to be returned.
+
+        Returns:
+           obj - The object queried or None otherwise
+        """
         key = f"{cls.__name__}.{id}"
         return self.__objects.get(key, None)
 
     def count(self, cls=None):
-        """counts the number of objects in storage"""
+        """
+        Counts the number of objects in storage
+
+        Paramters:
+            cls(class, default=None) - The class to be queried.
+
+        Returns:
+            int - Number of records found
+        """
         if cls is not None:
             return sum(
                 1
