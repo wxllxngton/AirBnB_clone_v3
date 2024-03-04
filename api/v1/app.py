@@ -3,16 +3,18 @@
 Script containing the Airbnb Clone API.
 """
 from os import getenv
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from models import storage
 from api.v1.views import app_views
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "0.0.0.0"}})  # Directly initialize CORS
+CORS(app,
+     resources={r"/api/*": {"origins": "0.0.0.0"}})  # Directly initialize CORS
 
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
+
 
 @app.teardown_appcontext
 def close_session(exception):
@@ -20,6 +22,15 @@ def close_session(exception):
     Teardown method to close the storage session.
     """
     storage.close()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """
+    Resource not found error handler.
+    """
+    return jsonify({'message': 'Not Found'})
+
 
 if __name__ == "__main__":
     """
