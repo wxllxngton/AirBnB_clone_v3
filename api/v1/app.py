@@ -29,7 +29,7 @@ def not_found(error):
     """
     Resource not found error handler.
     """
-    return jsonify({'message': 'Not Found'})
+    return jsonify({'error': 'Not found'})
 
 
 if __name__ == "__main__":
