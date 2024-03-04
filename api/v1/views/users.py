@@ -8,17 +8,27 @@ from models import storage
 from models.user import User
 
 
-@app_views.route('/users/', methods=['GET'])
-@app_views.route('/users', methods=['GET'])
+@app_views.route('/users/')
+@app_views.route('/users')
 def list_users():
-    """Retrieves a list of all User objects"""
+    """
+    Retrieves a list of all User objects.
+    """
     list_users = [user.to_dict() for user in storage.all("User").values()]
     return jsonify(list_users)
 
 
-@app_views.route('/users/<user_id>', methods=['GET'])
+@app_views.route('/users/<user_id>')
 def get_user(user_id):
-    """Retrieves a User object by ID"""
+    """
+    Retrieves a User object by ID.
+
+    Args:
+        user_id (str): The ID of the user to retrieve.
+
+    Returns:
+        JSON: A JSON representation of the User object.
+    """
     user_obj = storage.get("User", user_id)
     if user_obj is None:
         abort(404)
@@ -27,7 +37,15 @@ def get_user(user_id):
 
 @app_views.route('/users/<user_id>', methods=['DELETE'])
 def delete_user(user_id):
-    """Deletes a User object by ID"""
+    """
+    Deletes a User object by ID.
+
+    Args:
+        user_id (str): The ID of the user to delete.
+
+    Returns:
+        JSON: An empty JSON response with status code 200.
+    """
     user_obj = storage.get("User", user_id)
     if user_obj is None:
         abort(404)
@@ -38,7 +56,15 @@ def delete_user(user_id):
 
 @app_views.route('/users/', methods=['POST'])
 def create_user():
-    """Creates a User"""
+    """
+    Creates a User.
+
+    Args:
+        None (uses request.get_json()): The JSON payload containing user information.
+
+    Returns:
+        JSON: A JSON representation of the newly created User object with status code 201.
+    """
     try:
         data = request.get_json()
         if not data:
@@ -57,7 +83,15 @@ def create_user():
 
 @app_views.route('/users/<user_id>', methods=['PUT'])
 def update_user(user_id):
-    """Updates a User object by ID"""
+    """
+    Updates a User object by ID.
+
+    Args:
+        user_id (str): The ID of the user to update.
+
+    Returns:
+        JSON: A JSON representation of the updated User object with status code 200.
+    """
     user_obj = storage.get("User", user_id)
     if user_obj is None:
         abort(404)
