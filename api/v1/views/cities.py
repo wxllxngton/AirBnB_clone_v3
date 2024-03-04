@@ -9,8 +9,8 @@ from models.city import City
 from models.state import State
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'])
-@app_views.route('/states/<state_id>/cities/', methods=['GET'])
+@app_views.route('/states/<state_id>/cities')
+@app_views.route('/states/<state_id>/cities/')
 def list_cities_of_state(state_id):
     """Retrieves a list of all City objects in a specific State"""
     state_obj = storage.get("State", state_id)
@@ -45,7 +45,7 @@ def create_city(state_id):
         abort(400, 'Invalid JSON')
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'])
+@app_views.route('/cities/<city_id>')
 def get_city(city_id):
     """Retrieves a City object by ID"""
     city_obj = storage.get("City", city_id)
