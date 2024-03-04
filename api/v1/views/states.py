@@ -10,14 +10,27 @@ from models.state import State
 
 @app_views.route('/states/', methods=['GET'])
 def list_states():
-    """Retrieves a list of all State objects"""
+    """
+    Retrieves a list of all State objects.
+
+    Returns:
+        JSON: A JSON representation of the list of State objects.
+    """
     list_states = [obj.to_dict() for obj in storage.all("State").values()]
     return jsonify(list_states)
 
 
 @app_views.route('/states/<state_id>', methods=['GET'])
 def get_state(state_id):
-    """Retrieves a State object"""
+    """
+    Retrieves a State object by ID.
+
+    Args:
+        state_id (str): The ID of the state to retrieve.
+
+    Returns:
+        JSON: A JSON representation of the State object.
+    """
     state_obj = storage.get("State", state_id)
     if state_obj is None:
         abort(404)
@@ -26,7 +39,15 @@ def get_state(state_id):
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
 def delete_state(state_id):
-    """Deletes a State object"""
+    """
+    Deletes a State object by ID.
+
+    Args:
+        state_id (str): The ID of the state to delete.
+
+    Returns:
+        JSON: An empty JSON response with status code 200.
+    """
     state_obj = storage.get("State", state_id)
     if state_obj is None:
         abort(404)
@@ -37,7 +58,12 @@ def delete_state(state_id):
 
 @app_views.route('/states/', methods=['POST'])
 def create_state():
-    """Creates a State"""
+    """
+    Creates a State.
+
+    Returns:
+        JSON: A JSON representation of the newly created State object with status code 201.
+    """
     try:
         data = request.get_json()
         if not data:
@@ -56,7 +82,15 @@ def create_state():
 
 @app_views.route('/states/<state_id>', methods=['PUT'])
 def update_state(state_id):
-    """Updates a State object"""
+    """
+    Updates a State object by ID.
+
+    Args:
+        state_id (str): The ID of the state to update.
+
+    Returns:
+        JSON: A JSON representation of the updated State object with status code 200.
+    """
     state_obj = storage.get("State", state_id)
     if state_obj is None:
         abort(404)

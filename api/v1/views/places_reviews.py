@@ -12,7 +12,15 @@ from models.review import Review
 @app_views.route('/places/<place_id>/reviews')
 @app_views.route('/places/<place_id>/reviews/')
 def list_reviews_of_place(place_id):
-    """Retrieves a list of all Review objects of a Place"""
+    """
+    Retrieves a list of all Review objects of a Place.
+
+    Args:
+        place_id (str): The ID of the place for which to list reviews.
+
+    Returns:
+        JSON: A JSON representation of the list of Review objects.
+    """
     place_obj = storage.get("Place", place_id)
     if place_obj is None:
         abort(404)
@@ -24,7 +32,15 @@ def list_reviews_of_place(place_id):
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'])
 def create_review(place_id):
-    """Creates a Review for a Place"""
+    """
+    Creates a Review for a Place.
+
+    Args:
+        place_id (str): The ID of the place for which to create a review.
+
+    Returns:
+        JSON: A JSON representation of the newly created Review object with status code 201.
+    """
     try:
         data = request.get_json()
         if not data:
@@ -51,7 +67,15 @@ def create_review(place_id):
 
 @app_views.route('/reviews/<review_id>')
 def get_review(review_id):
-    """Retrieves a Review object by ID"""
+    """
+    Retrieves a Review object by ID.
+
+    Args:
+        review_id (str): The ID of the review to retrieve.
+
+    Returns:
+        JSON: A JSON representation of the Review object.
+    """
     review_obj = storage.get("Review", review_id)
     if review_obj is None:
         abort(404)
@@ -60,7 +84,15 @@ def get_review(review_id):
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'])
 def delete_review(review_id):
-    """Deletes a Review object by ID"""
+    """
+    Deletes a Review object by ID.
+
+    Args:
+        review_id (str): The ID of the review to delete.
+
+    Returns:
+        JSON: An empty JSON response with status code 200.
+    """
     review_obj = storage.get("Review", review_id)
     if review_obj is None:
         abort(404)
@@ -71,7 +103,15 @@ def delete_review(review_id):
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'])
 def update_review(review_id):
-    """Updates a Review object by ID"""
+    """
+    Updates a Review object by ID.
+
+    Args:
+        review_id (str): The ID of the review to update.
+
+    Returns:
+        JSON: A JSON representation of the updated Review object with status code 200.
+    """
     review_obj = storage.get("Review", review_id)
     if review_obj is None:
         abort(404)

@@ -10,14 +10,27 @@ from models.amenity import Amenity
 
 @app_views.route('/amenities/')
 def list_amenities():
-    """Retrieves a list of all Amenity objects"""
+    """
+    Retrieves a list of all Amenity objects.
+
+    Returns:
+        JSON: A JSON representation of the list of Amenity objects.
+    """
     list_amenities = [amenity.to_dict() for amenity in storage.all("Amenity").values()]
     return jsonify(list_amenities)
 
 
 @app_views.route('/amenities/<amenity_id>')
 def get_amenity(amenity_id):
-    """Retrieves an Amenity object by ID"""
+    """
+    Retrieves an Amenity object by ID.
+
+    Args:
+        amenity_id (str): The ID of the amenity to retrieve.
+
+    Returns:
+        JSON: A JSON representation of the Amenity object.
+    """
     amenity_obj = storage.get("Amenity", amenity_id)
     if amenity_obj is None:
         abort(404)
@@ -26,7 +39,15 @@ def get_amenity(amenity_id):
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
 def delete_amenity(amenity_id):
-    """Deletes an Amenity object by ID"""
+    """
+    Deletes an Amenity object by ID.
+
+    Args:
+        amenity_id (str): The ID of the amenity to delete.
+
+    Returns:
+        JSON: An empty JSON response with status code 200.
+    """
     amenity_obj = storage.get("Amenity", amenity_id)
     if amenity_obj is None:
         abort(404)
@@ -37,7 +58,12 @@ def delete_amenity(amenity_id):
 
 @app_views.route('/amenities/', methods=['POST'])
 def create_amenity():
-    """Creates an Amenity"""
+    """
+    Creates an Amenity.
+
+    Returns:
+        JSON: A JSON representation of the newly created Amenity object with status code 201.
+    """
     try:
         data = request.get_json()
         if not data:
@@ -56,7 +82,15 @@ def create_amenity():
 
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'])
 def update_amenity(amenity_id):
-    """Updates an Amenity object by ID"""
+    """
+    Updates an Amenity object by ID.
+
+    Args:
+        amenity_id (str): The ID of the amenity to update.
+
+    Returns:
+        JSON: A JSON representation of the updated Amenity object with status code 200.
+    """
     amenity_obj = storage.get("Amenity", amenity_id)
     if amenity_obj is None:
         abort(404)

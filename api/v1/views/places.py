@@ -12,7 +12,15 @@ from models.city import City
 @app_views.route('/cities/<city_id>/places')
 @app_views.route('/cities/<city_id>/places/')
 def list_places_of_city(city_id):
-    """Retrieves a list of all Place objects in a specific City"""
+    """
+    Retrieves a list of all Place objects in a specific City.
+
+    Args:
+        city_id (str): The ID of the city for which to list places.
+
+    Returns:
+        JSON: A JSON representation of the list of Place objects.
+    """
     city_obj = storage.get("City", city_id)
     if city_obj is None:
         abort(404)
@@ -24,7 +32,15 @@ def list_places_of_city(city_id):
 
 @app_views.route('/places/<place_id>')
 def get_place(place_id):
-    """Retrieves a Place object by ID"""
+    """
+    Retrieves a Place object by ID.
+
+    Args:
+        place_id (str): The ID of the place to retrieve.
+
+    Returns:
+        JSON: A JSON representation of the Place object.
+    """
     place_obj = storage.get("Place", place_id)
     if place_obj is None:
         abort(404)
@@ -33,7 +49,15 @@ def get_place(place_id):
 
 @app_views.route('/places/<place_id>', methods=['DELETE'])
 def delete_place(place_id):
-    """Deletes a Place object by ID"""
+    """
+    Deletes a Place object by ID.
+
+    Args:
+        place_id (str): The ID of the place to delete.
+
+    Returns:
+        JSON: An empty JSON response with status code 200.
+    """
     place_obj = storage.get("Place", place_id)
     if place_obj is None:
         abort(404)
@@ -44,7 +68,15 @@ def delete_place(place_id):
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'])
 def create_place(city_id):
-    """Creates a Place in a specific City"""
+    """
+    Creates a Place in a specific City.
+
+    Args:
+        city_id (str): The ID of the city in which to create a place.
+
+    Returns:
+        JSON: A JSON representation of the newly created Place object with status code 201.
+    """
     try:
         data = request.get_json()
         if not data:
@@ -71,7 +103,15 @@ def create_place(city_id):
 
 @app_views.route('/places/<place_id>', methods=['PUT'])
 def update_place(place_id):
-    """Updates a Place object by ID"""
+    """
+    Updates a Place object by ID.
+
+    Args:
+        place_id (str): The ID of the place to update.
+
+    Returns:
+        JSON: A JSON representation of the updated Place object with status code 200.
+    """
     place_obj = storage.get("Place", place_id)
     if place_obj is None:
         abort(404)
