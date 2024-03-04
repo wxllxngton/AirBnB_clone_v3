@@ -39,7 +39,8 @@ def create_city(state_id):
         state_id (str): The ID of the state to create the city in.
 
     Returns:
-        JSON: A JSON representation of the newly created City object with status code 201.
+        JSON: A JSON representation of the newly created
+        City object with status code 201.
     """
     try:
         data = request.get_json()
@@ -106,7 +107,8 @@ def update_city(city_id):
         city_id (str): The ID of the city to update.
 
     Returns:
-        JSON: A JSON representation of the updated City object with status code 200.
+        JSON: A JSON representation of the updated
+        City object with status code 200.
     """
     city_obj = storage.get("City", city_id)
     if city_obj is None:

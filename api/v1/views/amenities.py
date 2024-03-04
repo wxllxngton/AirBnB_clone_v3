@@ -16,7 +16,8 @@ def list_amenities():
     Returns:
         JSON: A JSON representation of the list of Amenity objects.
     """
-    list_amenities = [amenity.to_dict() for amenity in storage.all("Amenity").values()]
+    list_amenities = [amenity.to_dict() for amenity in storage
+                      .all("Amenity").values()]
     return jsonify(list_amenities)
 
 
@@ -62,7 +63,8 @@ def create_amenity():
     Creates an Amenity.
 
     Returns:
-        JSON: A JSON representation of the newly created Amenity object with status code 201.
+        JSON: A JSON representation of the newly created
+        Amenity object with status code 201.
     """
     try:
         data = request.get_json()
@@ -89,7 +91,8 @@ def update_amenity(amenity_id):
         amenity_id (str): The ID of the amenity to update.
 
     Returns:
-        JSON: A JSON representation of the updated Amenity object with status code 200.
+        JSON: A JSON representation of the updated
+        Amenity object with status code 200.
     """
     amenity_obj = storage.get("Amenity", amenity_id)
     if amenity_obj is None:

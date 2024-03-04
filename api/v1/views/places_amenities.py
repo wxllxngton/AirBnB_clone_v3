@@ -46,7 +46,8 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
             amenity_id (str): The ID of the amenity.
 
         Returns:
-            JSON: A JSON representation of the newly created Amenity object with status code 200.
+            JSON: A JSON representation of the newly created
+            Amenity object with status code 200.
         """
         all_places = storage.all("Place").values()
         place_obj = [obj.to_dict() for obj in all_places if obj.id == place_id]
@@ -139,7 +140,8 @@ else:
             amenity_id (str): The ID of the amenity.
 
         Returns:
-            JSON: A JSON representation of the newly created Amenity object with status code 200.
+            JSON: A JSON representation of the newly created
+            Amenity object with status code 200.
         """
         all_places = storage.all("Place").values()
         place_obj = [obj.to_dict() for obj in all_places if obj.id == place_id]

@@ -62,7 +62,8 @@ def create_state():
     Creates a State.
 
     Returns:
-        JSON: A JSON representation of the newly created State object with status code 201.
+        JSON: A JSON representation of the newly created
+        State object with status code 201.
     """
     try:
         data = request.get_json()
@@ -89,7 +90,8 @@ def update_state(state_id):
         state_id (str): The ID of the state to update.
 
     Returns:
-        JSON: A JSON representation of the updated State object with status code 200.
+        JSON: A JSON representation of the updated
+        State object with status code 200.
     """
     state_obj = storage.get("State", state_id)
     if state_obj is None:

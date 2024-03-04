@@ -75,7 +75,8 @@ def create_place(city_id):
         city_id (str): The ID of the city in which to create a place.
 
     Returns:
-        JSON: A JSON representation of the newly created Place object with status code 201.
+        JSON: A JSON representation of the newly created
+        Place object with status code 201.
     """
     try:
         data = request.get_json()
@@ -110,7 +111,8 @@ def update_place(place_id):
         place_id (str): The ID of the place to update.
 
     Returns:
-        JSON: A JSON representation of the updated Place object with status code 200.
+        JSON: A JSON representation of the updated
+        Place object with status code 200.
     """
     place_obj = storage.get("Place", place_id)
     if place_obj is None:

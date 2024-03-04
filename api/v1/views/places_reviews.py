@@ -25,7 +25,9 @@ def list_reviews_of_place(place_id):
     if place_obj is None:
         abort(404)
 
-    list_reviews = [review.to_dict() for review in storage.all("Review").values()
+    list_reviews = [review.to_dict() for review in storage
+                    .all("Review")
+                    .values()
                     if place_id == review.place_id]
     return jsonify(list_reviews)
 
@@ -39,7 +41,8 @@ def create_review(place_id):
         place_id (str): The ID of the place for which to create a review.
 
     Returns:
-        JSON: A JSON representation of the newly created Review object with status code 201.
+        JSON: A JSON representation of the newly created
+        Review object with status code 201.
     """
     try:
         data = request.get_json()
@@ -110,7 +113,8 @@ def update_review(review_id):
         review_id (str): The ID of the review to update.
 
     Returns:
-        JSON: A JSON representation of the updated Review object with status code 200.
+        JSON: A JSON representation of the updated
+        Review object with status code 200.
     """
     review_obj = storage.get("Review", review_id)
     if review_obj is None:

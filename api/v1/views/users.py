@@ -60,10 +60,12 @@ def create_user():
     Creates a User.
 
     Args:
-        None (uses request.get_json()): The JSON payload containing user information.
+        None (uses request.get_json()): The JSON payload
+        containing user information.
 
     Returns:
-        JSON: A JSON representation of the newly created User object with status code 201.
+        JSON: A JSON representation of the newly created
+        User object with status code 201.
     """
     try:
         data = request.get_json()
@@ -90,7 +92,8 @@ def update_user(user_id):
         user_id (str): The ID of the user to update.
 
     Returns:
-        JSON: A JSON representation of the updated User object with status code 200.
+        JSON: A JSON representation of the updated
+        User object with status code 200.
     """
     user_obj = storage.get("User", user_id)
     if user_obj is None:
