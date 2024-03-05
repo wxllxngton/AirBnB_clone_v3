@@ -20,7 +20,7 @@ sys.path.append(module_path)
 m_imported = import_module(module_name)
 
 if m_imported.__doc__ is None:
-    print("No module documentation", end="")
+    print("No module documentation")
 else:
-    print("OK", end="")
+    print("OK")
 
