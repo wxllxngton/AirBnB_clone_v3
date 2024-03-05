@@ -1,10 +1,6 @@
 #!/usr/bin/python3
 """
 Module containing views for User objects.
-
-This module defines Flask views for handling User objects,
-including listing users, retrieving user details,
-creating, updating, and deleting users.
 """
 from api.v1.views import app_views
 from flask import jsonify, abort, request
